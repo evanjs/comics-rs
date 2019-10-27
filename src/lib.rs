@@ -104,9 +104,8 @@ impl ComicClient {
                 query_map.insert("resources", r);
             }
         }
-        match id {
-            Some(i) => full_url = full_url.join(&i.to_string()).expect("Failed to add on id"),
-            _ => {}
+        if let Some(i) = id {
+            full_url = full_url.join(&i.to_string()).expect("Failed to add on id")
         }
         dbg!(&full_url);
 
