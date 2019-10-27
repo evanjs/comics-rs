@@ -22,7 +22,6 @@ extern crate tracing;
 
 use failure::_core::result::Result::Err;
 use std::clone::Clone;
-use std::mem::drop;
 use std::result::Result::Ok;
 
 type Result<T> = std::result::Result<T, failure::Error>;
@@ -106,10 +105,10 @@ impl ComicClient {
         dbg!(&full_url);
 
         if let Some(f) = filter {
-            drop(query_map.insert("filter", f))
+            query_map.insert("filter", &f);
         }
         if let Some(q) = query {
-            drop(query_map.insert("query", q))
+            query_map.insert("query", &q);
         }
         let request = self.client.request(Method::GET, full_url).query(&query_map);
         debug!("Full request: {:#?}", &request);
