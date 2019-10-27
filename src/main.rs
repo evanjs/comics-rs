@@ -20,13 +20,22 @@ fn main() -> Result<(), failure::Error> {
 
     let yaml = load_yaml!("cli.yml");
     let matches = App::from_yaml(yaml).get_matches();
-    let arc = value_t!(matches.value_of("arc"), String)?;
+    let arc = value_t!(matches.value_of("arc"), String).unwrap_or("".to_string());
+    let series = value_t!(matches.value_of("series"), String).unwrap_or("".to_string());
 
     let comic_client: ComicClient = ComicClient::new(config);
-    // how do I wrap this into a more generic error type?
-    match comic_client.search_story_arc(&arc) {
-        Ok(arc_result) => println!("{}", arc_result.results.issues),
-        Err(e) => {println!("{}", e)}
+    if arc != "" {
+        match comic_client.search_story_arc(&arc) {
+            Ok(arc_result) => println!("{}", arc_result.results.issues),
+            Err(e) => { println!("{}", e) }
+        }
+    }
+
+    if series != "" {
+        match comic_client.search_series(&series) {
+            Ok(arc_result) => println!("{:#?}", arc_result.results),
+            Err(e) => { println!("{}", e) }
+        }
     }
     Ok(())
 }

@@ -1,11 +1,20 @@
-name: ozone 
+name: ozone
 version: "0.1"
 author: Evan Stoll <evanjsx@gmail.com>
 about: Query comic data from ComicVine
 args:
-    - arc:
-        short: a
-        long: arc
-        value_name: ARC
-        help: the story arch to query
-        takes_value: true
+  - arc:
+      short: a
+      long: arc
+      value_name: ARC
+      help: the story arc to query
+      conflicts_with: series
+      takes_value: true
+  - series:
+      short: s
+      long: series
+      value_name: SERIES
+      help: the series to query
+      conflicts_with: arc
+      required: false
+      takes_value: true
