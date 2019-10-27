@@ -1,12 +1,12 @@
-use std::option::Option;
 use chrono::Utc;
-use std::string::String;
-use std::prelude::v1::Vec;
+use failure::_core::fmt::{Error, Formatter};
 use std::fmt::Display;
-use failure::_core::fmt::{Formatter, Error};
+use std::option::Option;
+use std::option::Option::Some;
+use std::prelude::v1::Vec;
 use std::result::Result;
 use std::result::Result::Ok;
-use std::option::Option::Some;
+use std::string::String;
 
 #[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
 pub struct Root {
@@ -91,11 +91,18 @@ impl Display for Issue {
         match &self.name {
             Some(name) => {
                 // TODO - add left padding
-                write!(f, "{} - URL: {}", &self.name.as_ref().unwrap(), self.site_detail_url)
+                write!(
+                    f,
+                    "{} - URL: {}",
+                    &self.name.as_ref().unwrap(),
+                    self.site_detail_url
+                )
             }
-            None => {
-                write!(f, "No name for issue {} - URL: {}", self.id, self.site_detail_url)
-            }
+            None => write!(
+                f,
+                "No name for issue {} - URL: {}",
+                self.id, self.site_detail_url
+            ),
         }
     }
 }

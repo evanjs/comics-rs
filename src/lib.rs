@@ -11,10 +11,8 @@ use std::string::{String, ToString};
 mod model;
 
 use crate::{
+    model::serie::Root as Serie, model::series::Root as Series, model::story_arc::Root as StoryArc,
     model::story_arcs::Root as StoryArcs,
-    model::series::Root as Series,
-    model::serie::Root as Serie,
-    model::story_arc::Root as StoryArc,
 };
 use serde::de::DeserializeOwned;
 use std::collections::HashMap;
@@ -25,14 +23,13 @@ use std::option::Option::{None, Some};
 #[macro_use]
 extern crate tracing;
 
-use std::result::Result::Ok;
-use std::mem::drop;
-use failure::_core::result::Result::Err;
 use failure::Error;
+use failure::_core::result::Result::Err;
 use std::clone::Clone;
+use std::mem::drop;
+use std::result::Result::Ok;
 
 type Result<T> = std::result::Result<T, failure::Error>;
-
 
 const BASE_URL: &str = "https://comicvine.gamespot.com/api/";
 
@@ -57,19 +54,17 @@ impl ComicClient {
     }
 
     pub fn get_story_arc(&self, story_arc_id: u64) -> Result<StoryArc> {
-        let result: Result<StoryArc> = self.get_resource(Some(story_arc_id), "story_arc", None, None, None);
+        let result: Result<StoryArc> =
+            self.get_resource(Some(story_arc_id), "story_arc", None, None, None);
         result
     }
 
     pub fn search_series(&self, query: &str) -> Result<Serie> {
-        let things: Series = self.get_resource(None, "series", None, Some(query), Some("series"))?;
+        let things: Series =
+            self.get_resource(None, "series", None, Some(query), Some("series"))?;
         match things.results.first() {
-            Some(s) => {
-                self.get_series(s.id.clone())
-            }
-            None => {
-                Err(failure::err_msg(format!("no matches found for {}", query)))
-            }
+            Some(s) => self.get_series(s.id.clone()),
+            None => Err(failure::err_msg(format!("no matches found for {}", query))),
         }
     }
 
@@ -77,12 +72,8 @@ impl ComicClient {
         let filter = format!("name:{}", query);
         let things: StoryArcs = self.get_resource(None, "story_arcs", Some(&filter), None, None)?;
         match things.results.first() {
-            Some(s) => {
-                self.get_story_arc(s.id.clone())
-            }
-            None => {
-                Err(failure::err_msg(format!("no matches found for {}", query)))
-            }
+            Some(s) => self.get_story_arc(s.id.clone()),
+            None => Err(failure::err_msg(format!("no matches found for {}", query))),
         }
     }
 
@@ -109,8 +100,7 @@ impl ComicClient {
                     .expect("failed to join resource/ onto base url");
             }
             Some(r) => {
-                full_url = full_url
-                    .join("search/")?;
+                full_url = full_url.join("search/")?;
                 query_map.insert("resources", r);
             }
         }

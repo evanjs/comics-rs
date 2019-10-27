@@ -6,9 +6,9 @@ use clap::App;
 use dotenv;
 use envy;
 use ozone::{ComicClient, Config};
-use std::result::Result;
-use std::result::Result::{Ok, Err};
 use std::iter::Iterator;
+use std::result::Result;
+use std::result::Result::{Err, Ok};
 
 fn main() -> Result<(), failure::Error> {
     env_logger::init();
@@ -27,14 +27,14 @@ fn main() -> Result<(), failure::Error> {
     if arc != "" {
         match comic_client.search_story_arc(&arc) {
             Ok(arc_result) => println!("{}", arc_result.results.issues),
-            Err(e) => { println!("{}", e) }
+            Err(e) => println!("{}", e),
         }
     }
 
     if series != "" {
         match comic_client.search_series(&series) {
             Ok(arc_result) => println!("{:#?}", arc_result.results),
-            Err(e) => { println!("{}", e) }
+            Err(e) => println!("{}", e),
         }
     }
     Ok(())
