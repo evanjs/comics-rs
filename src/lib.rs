@@ -1,10 +1,7 @@
-
-
 use reqwest;
 use reqwest::Method;
 use reqwest::Url;
-use serde::{Deserialize};
-
+use serde::Deserialize;
 
 use std::string::{String, ToString};
 
@@ -22,7 +19,6 @@ use std::option::Option::{None, Some};
 
 #[macro_use]
 extern crate tracing;
-
 
 use failure::_core::result::Result::Err;
 use std::clone::Clone;
