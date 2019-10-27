@@ -1,4 +1,3 @@
-
 use failure::_core::fmt::{Error, Formatter};
 use std::fmt::Display;
 use std::option::Option;
