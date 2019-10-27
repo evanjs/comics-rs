@@ -8,8 +8,8 @@ use std::string::{String, ToString};
 mod model;
 
 use crate::{
-    model::serie::Root as Serie, model::series::Root as Series, model::story_arc::Root as StoryArc,
-    model::story_arcs::Root as StoryArcs,
+    model::series::Root as Series, model::series_collection::Root as SeriesCollection, model::story_arc::Root as StoryArc,
+    model::story_arc_collection::Root as StoryArcCollection,
 };
 use serde::de::DeserializeOwned;
 use std::collections::HashMap;
@@ -54,8 +54,8 @@ impl ComicClient {
         result
     }
 
-    pub fn search_series(&self, query: &str) -> Result<Serie> {
-        let things: Series =
+    pub fn search_series(&self, query: &str) -> Result<Series> {
+        let things: SeriesCollection =
             self.get_resource(None, "series", None, Some(query), Some("series"))?;
         match things.results.first() {
             Some(s) => self.get_series(s.id.clone()),
@@ -65,14 +65,14 @@ impl ComicClient {
 
     pub fn search_story_arc(&self, query: &str) -> Result<StoryArc> {
         let filter = format!("name:{}", query);
-        let things: StoryArcs = self.get_resource(None, "story_arcs", Some(&filter), None, None)?;
+        let things: StoryArcCollection = self.get_resource(None, "story_arcs", Some(&filter), None, None)?;
         match things.results.first() {
             Some(s) => self.get_story_arc(s.id.clone()),
             None => Err(failure::err_msg(format!("no matches found for {}", query))),
         }
     }
 
-    pub fn get_series(&self, series_id: u64) -> Result<Serie> {
+    pub fn get_series(&self, series_id: u64) -> Result<Series> {
         self.get_resource(Some(series_id), &"series".to_string(), None, None, None)
     }
 

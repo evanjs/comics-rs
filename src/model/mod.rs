@@ -1,4 +1,4 @@
-pub mod serie;
 pub mod series;
+pub mod series_collection;
 pub mod story_arc;
-pub mod story_arcs;
+pub mod story_arc_collection;
