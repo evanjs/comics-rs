@@ -110,13 +110,11 @@ impl ComicClient {
         }
         dbg!(&full_url);
 
-        match filter {
-            Some(f) => drop(query_map.insert("filter", f)),
-            None => {}
+        if let Some(f) = filter {
+            drop(query_map.insert("filter", f))
         }
-        match query {
-            Some(q) => drop(query_map.insert("query", q)),
-            _ => {}
+        if let Some(q) = query {
+            drop(query_map.insert("query", q))
         }
         let request = self.client.request(Method::GET, full_url).query(&query_map);
         debug!("Full request: {:#?}", &request);
