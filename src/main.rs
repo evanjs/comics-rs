@@ -9,6 +9,7 @@ use ozone::{ComicClient, Config};
 
 use std::result::Result;
 use std::result::Result::{Err, Ok};
+use std::string::ToString;
 
 fn main() -> Result<(), failure::Error> {
     env_logger::init();

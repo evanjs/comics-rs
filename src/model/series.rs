@@ -1,4 +1,6 @@
 use std::prelude::v1::Vec;
+use std::option::Option;
+use std::string::String;
 
 #[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
 pub struct Root {
