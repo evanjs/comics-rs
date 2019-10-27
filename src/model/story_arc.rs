@@ -91,12 +91,7 @@ impl Display for Issue {
         match &self.name {
             Some(name) => {
                 // TODO - add left padding
-                write!(
-                    f,
-                    "{} - URL: {}",
-                    &self.name.as_ref().unwrap(),
-                    self.site_detail_url
-                )
+                write!(f, "{} - URL: {}", name, self.site_detail_url)
             }
             None => write!(
                 f,
