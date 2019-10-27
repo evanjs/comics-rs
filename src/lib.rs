@@ -1,11 +1,11 @@
-use error_chain::error_chain;
-use failure::{AsFail, Fail};
+
+
 use reqwest;
 use reqwest::Method;
 use reqwest::Url;
-use serde::{Deserialize, Serialize};
-use serde_json::{Deserializer, Serializer};
-use std::prelude::v1::{Box, Vec};
+use serde::{Deserialize};
+
+
 use std::string::{String, ToString};
 
 mod model;
@@ -16,14 +16,14 @@ use crate::{
 };
 use serde::de::DeserializeOwned;
 use std::collections::HashMap;
-use std::io::Read;
+
 use std::option::Option;
 use std::option::Option::{None, Some};
 
 #[macro_use]
 extern crate tracing;
 
-use failure::Error;
+
 use failure::_core::result::Result::Err;
 use std::clone::Clone;
 use std::mem::drop;
@@ -118,7 +118,7 @@ impl ComicClient {
             Some(q) => drop(query_map.insert("query", q)),
             _ => {}
         }
-        let mut request = self.client.request(Method::GET, full_url).query(&query_map);
+        let request = self.client.request(Method::GET, full_url).query(&query_map);
         debug!("Full request: {:#?}", &request);
         let mut response = request.send()?;
         let json = response.json()?;

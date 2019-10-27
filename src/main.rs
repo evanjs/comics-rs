@@ -6,7 +6,7 @@ use clap::App;
 use dotenv;
 use envy;
 use ozone::{ComicClient, Config};
-use std::iter::Iterator;
+
 use std::result::Result;
 use std::result::Result::{Err, Ok};
 
