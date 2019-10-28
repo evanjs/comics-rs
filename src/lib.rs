@@ -8,8 +8,8 @@ use std::string::{String, ToString};
 mod model;
 
 use crate::{
-    model::series::Root as Series, model::series_collection::Root as SeriesCollection, model::story_arc::Root as StoryArc,
-    model::story_arc_collection::Root as StoryArcCollection,
+    model::series::Root as Series, model::series_collection::Root as SeriesCollection,
+    model::story_arc::Root as StoryArc, model::story_arc_collection::Root as StoryArcCollection,
 };
 use serde::de::DeserializeOwned;
 use std::collections::HashMap;
@@ -65,7 +65,8 @@ impl ComicClient {
 
     pub fn search_story_arc(&self, query: &str) -> Result<StoryArc> {
         let filter = format!("name:{}", query);
-        let things: StoryArcCollection = self.get_resource(None, "story_arcs", Some(&filter), None, None)?;
+        let things: StoryArcCollection =
+            self.get_resource(None, "story_arcs", Some(&filter), None, None)?;
         match things.results.first() {
             Some(s) => self.get_story_arc(s.id.clone()),
             None => Err(failure::err_msg(format!("no matches found for {}", query))),

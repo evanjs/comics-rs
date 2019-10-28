@@ -1,5 +1,5 @@
-use std::prelude::v1::Vec;
 use std::option::Option;
+use std::prelude::v1::Vec;
 use std::string::String;
 
 #[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]

@@ -3,9 +3,9 @@ extern crate clap;
 
 use clap::App;
 
+use comics::{ComicClient, Config};
 use dotenv;
 use envy;
-use comics::{ComicClient, Config};
 
 use std::result::Result;
 use std::result::Result::{Err, Ok};
