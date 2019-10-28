@@ -5,7 +5,7 @@ use clap::App;
 
 use dotenv;
 use envy;
-use ozone::{ComicClient, Config};
+use comics::{ComicClient, Config};
 
 use std::result::Result;
 use std::result::Result::{Err, Ok};
