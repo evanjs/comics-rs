@@ -4,7 +4,7 @@ use std::string::String;
 use chrono::{DateTime, Utc};
 use crate::deserializer;
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Root {
     error: Option<String>,
     limit: u64,
@@ -16,7 +16,7 @@ pub struct Root {
     version: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Result {
     aliases: ::serde_json::Value,
     api_detail_url: Option<String>,
@@ -36,7 +36,7 @@ pub struct Result {
     site_detail_url: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct FirstAppearedInIssue {
     api_detail_url: Option<String>,
     id: u64,
@@ -44,7 +44,7 @@ struct FirstAppearedInIssue {
     issue_number: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Image {
     icon_url: Option<String>,
     medium_url: Option<String>,
@@ -58,7 +58,7 @@ struct Image {
     image_tags: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Publisher {
     api_detail_url: Option<String>,
     id: u64,

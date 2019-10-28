@@ -4,7 +4,7 @@ use std::prelude::v1::Vec;
 use std::string::String;
 use crate::deserializer;
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Root {
     error: Option<String>,
     limit: u64,
@@ -16,7 +16,7 @@ pub struct Root {
     version: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Results {
     aliases: ::serde_json::Value,
     api_detail_url: Option<String>,
@@ -39,7 +39,7 @@ pub struct Results {
     start_year: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Character {
     api_detail_url: Option<String>,
     id: u64,
@@ -48,7 +48,7 @@ struct Character {
     count: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Episode {
     api_detail_url: Option<String>,
     id: u64,
@@ -57,7 +57,7 @@ struct Episode {
     episode_number: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct FirstEpisode {
     api_detail_url: Option<String>,
     id: u64,
@@ -65,7 +65,7 @@ struct FirstEpisode {
     episode_number: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Image {
     icon_url: Option<String>,
     medium_url: Option<String>,
@@ -79,7 +79,7 @@ struct Image {
     image_tags: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct LastEpisode {
     api_detail_url: Option<String>,
     id: u64,
@@ -87,7 +87,7 @@ struct LastEpisode {
     episode_number: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Publisher {
     api_detail_url: Option<String>,
     id: u64,

@@ -9,7 +9,7 @@ use std::result::Result::Ok;
 use std::string::String;
 use crate::deserializer;
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Root {
     error: String,
     limit: u64,
@@ -21,10 +21,10 @@ pub struct Root {
     version: String,
 }
 
-#[derive(serde_derive::Deserialize, serde_derive::Serialize, Debug, Default, Clone, PartialEq)]
+#[derive(serde::Deserialize, serde::Serialize, Debug, Default, Clone, PartialEq)]
 pub struct Issues(Vec<Issue>);
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Results {
     aliases: ::serde_json::Value,
     api_detail_url: String,
@@ -47,7 +47,7 @@ pub struct Results {
     site_detail_url: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct FirstAppearedInIssue {
     api_detail_url: String,
     id: u64,
@@ -55,7 +55,7 @@ struct FirstAppearedInIssue {
     issue_number: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Image {
     icon_url: String,
     medium_url: String,
@@ -69,7 +69,7 @@ struct Image {
     image_tags: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Issue {
     api_detail_url: String,
     pub id: u64,
@@ -103,7 +103,7 @@ impl Display for Issue {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Publisher {
     api_detail_url: String,
     id: u64,
