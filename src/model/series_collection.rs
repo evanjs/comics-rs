@@ -1,6 +1,8 @@
 use std::option::Option;
 use std::prelude::v1::Vec;
 use std::string::String;
+use chrono::{DateTime, Utc};
+use crate::deserializer;
 
 #[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
 pub struct Root {
@@ -20,8 +22,10 @@ pub struct Results {
     api_detail_url: String,
     characters: Option<Vec<Character>>,
     count_of_episodes: u64,
-    date_added: String,
-    date_last_updated: String,
+    #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
+    date_added: Option<DateTime<Utc>>,
+    #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
+    date_last_updated: Option<DateTime<Utc>>,
     deck: ::serde_json::Value,
     description: ::serde_json::Value,
     episodes: Option<Vec<Episode>>,

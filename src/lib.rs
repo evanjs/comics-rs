@@ -6,6 +6,7 @@ use serde::Deserialize;
 use std::string::{String, ToString};
 
 mod model;
+mod deserializer;
 
 use crate::{
     model::series::Root as Series, model::series_collection::Root as SeriesCollection,

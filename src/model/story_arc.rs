@@ -1,3 +1,4 @@
+use chrono::prelude::*;
 use failure::_core::fmt::{Error, Formatter};
 use std::fmt::Display;
 use std::option::Option;
@@ -6,6 +7,7 @@ use std::prelude::v1::Vec;
 use std::result::Result;
 use std::result::Result::Ok;
 use std::string::String;
+use crate::deserializer;
 
 #[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
 pub struct Root {
@@ -27,10 +29,10 @@ pub struct Results {
     aliases: ::serde_json::Value,
     api_detail_url: String,
     count_of_isssue_appearances: u64,
-    // TODO: DateTime<Utc>?
-    date_added: String,
-    // TODO: DateTime<Utc>?
-    date_last_updated: String,
+    #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
+    date_added: Option<DateTime<Utc>>,
+    #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
+    date_last_updated: Option<DateTime<Utc>>,
     deck: String,
     description: Option<String>,
     episodes: Option<Vec<::serde_json::Value>>,
