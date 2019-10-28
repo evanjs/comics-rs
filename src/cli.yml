@@ -2,6 +2,7 @@ name: comics
 version: "0.1"
 author: Evan Stoll <evanjsx@gmail.com>
 about: Query comic data from ComicVine
+license: MIT
 args:
   - arc:
       short: a
