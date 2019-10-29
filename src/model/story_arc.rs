@@ -27,13 +27,13 @@ pub struct Issues(Vec<Issue>);
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Results {
     aliases: ::serde_json::Value,
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     count_of_isssue_appearances: u64,
     #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
     date_added: Option<DateTime<Utc>>,
     #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
     date_last_updated: Option<DateTime<Utc>>,
-    deck: String,
+    deck: Option<String>,
     description: Option<String>,
     episodes: Option<Vec<::serde_json::Value>>,
     first_appeared_in_episode: Option<::serde_json::Value>,
@@ -42,39 +42,39 @@ pub struct Results {
     image: Option<Image>,
     pub issues: Issues,
     movies: Option<Vec<::serde_json::Value>>,
-    name: String,
+    name: Option<String>,
     publisher: Option<Publisher>,
-    site_detail_url: String,
+    site_detail_url: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct FirstAppearedInIssue {
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     id: u64,
-    name: String,
-    issue_number: String,
+    name: Option<String>,
+    issue_number: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Image {
-    icon_url: String,
-    medium_url: String,
-    screen_url: String,
-    screen_large_url: String,
-    small_url: String,
-    super_url: String,
-    thumb_url: String,
-    tiny_url: String,
-    original_url: String,
-    image_tags: String,
+    icon_url: Option<String>,
+    medium_url: Option<String>,
+    screen_url: Option<String>,
+    screen_large_url: Option<String>,
+    small_url: Option<String>,
+    super_url: Option<String>,
+    thumb_url: Option<String>,
+    tiny_url: Option<String>,
+    original_url: Option<String>,
+    image_tags: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Issue {
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     pub id: u64,
     pub name: Option<String>,
-    site_detail_url: String,
+    site_detail_url: Option<String>,
 }
 
 impl Display for Issues {
@@ -105,8 +105,8 @@ impl Display for Issue {
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Publisher {
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     id: u64,
-    name: String,
-    site_detail_url: String,
+    name: Option<String>,
+    site_detail_url: Option<String>,
 }

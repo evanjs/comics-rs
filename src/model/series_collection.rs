@@ -41,55 +41,55 @@ pub struct Results {
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Character {
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     id: u64,
-    name: String,
-    site_detail_url: String,
-    count: String,
+    name: Option<String>,
+    site_detail_url: Option<String>,
+    count: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Episode {
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     id: u64,
-    name: String,
+    name: Option<String>,
     site_detail_url: String,
-    episode_number: String,
+    episode_number: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct FirstEpisode {
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     id: u64,
-    name: String,
-    episode_number: String,
+    name: Option<String>,
+    episode_number: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Image {
-    icon_url: String,
-    medium_url: String,
-    screen_url: String,
-    screen_large_url: String,
-    small_url: String,
-    super_url: String,
-    thumb_url: String,
-    tiny_url: String,
-    original_url: String,
-    image_tags: String,
+    icon_url: Option<String>,
+    medium_url: Option<String>,
+    screen_url: Option<String>,
+    screen_large_url: Option<String>,
+    small_url: Option<String>,
+    super_url: Option<String>,
+    thumb_url: Option<String>,
+    tiny_url: Option<String>,
+    original_url: Option<String>,
+    image_tags: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct LastEpisode {
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     id: u64,
-    name: String,
-    episode_number: String,
+    name: Option<String>,
+    episode_number: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 struct Publisher {
-    api_detail_url: String,
+    api_detail_url: Option<String>,
     id: u64,
-    name: String,
+    name: Option<String>,
 }
