@@ -3,6 +3,11 @@ use std::prelude::v1::Vec;
 use std::string::String;
 use chrono::{DateTime, Utc};
 use crate::deserializer;
+use std::option::Option::Some;
+
+fn default_name() -> Option<String> {
+    Some(String::from("Unknown"))
+}
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Root {
@@ -20,7 +25,8 @@ pub struct Root {
 pub struct Result {
     aliases: ::serde_json::Value,
     api_detail_url: Option<String>,
-    count_of_isssue_appearances: u64,
+    #[serde(rename="count_of_isssue_appearances")]
+    count_of_issue_appearances: u64,
     #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
     date_added: Option<DateTime<Utc>>,
     #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
@@ -31,6 +37,7 @@ pub struct Result {
     first_appeared_in_episode: Option<::serde_json::Value>,
     pub id: u64,
     image: Image,
+    #[serde(default="default_name")]
     name: Option<String>,
     publisher: Publisher,
     site_detail_url: Option<String>,

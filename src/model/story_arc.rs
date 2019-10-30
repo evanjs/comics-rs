@@ -8,6 +8,13 @@ use std::result::Result;
 use std::result::Result::Ok;
 use std::string::String;
 use crate::deserializer;
+use serde;
+use serde_json;
+use serde::de::Deserialize;
+
+fn default_name() -> Option<String> {
+    Some(String::from("Unknown"))
+}
 
 #[derive(Default, Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Root {
@@ -28,7 +35,8 @@ pub struct Issues(Vec<Issue>);
 pub struct Results {
     aliases: ::serde_json::Value,
     api_detail_url: Option<String>,
-    count_of_isssue_appearances: u64,
+    #[serde(rename="count_of_isssue_appearances")]
+    count_of_issue_appearances: u64,
     #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
     date_added: Option<DateTime<Utc>>,
     #[serde(deserialize_with = "deserializer::deserialize_optional_datetime")]
@@ -42,6 +50,7 @@ pub struct Results {
     image: Option<Image>,
     pub issues: Issues,
     movies: Option<Vec<::serde_json::Value>>,
+    #[serde(deserialize_with = "deserializer::empty_string_is_none")]
     name: Option<String>,
     publisher: Option<Publisher>,
     site_detail_url: Option<String>,
@@ -73,6 +82,7 @@ struct Image {
 pub struct Issue {
     api_detail_url: Option<String>,
     pub id: u64,
+    #[serde(deserialize_with = "deserializer::empty_string_is_none")]
     pub name: Option<String>,
     site_detail_url: Option<String>,
 }
@@ -89,17 +99,8 @@ impl Display for Issues {
 
 impl Display for Issue {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error> {
-        match &self.name {
-            Some(name) => {
-                // TODO - add left padding
-                write!(f, "{} - URL: {}", name, self.site_detail_url)
-            }
-            None => write!(
-                f,
-                "No name for issue {} - URL: {}",
-                self.id, self.site_detail_url
-            ),
-        }
+        // TODO - add left padding
+        write!(f, "{} - URL: {}", self.name.clone().unwrap_or_default(), self.site_detail_url.clone().unwrap_or_default())
     }
 }
 
